@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: dm-manager
+    # volumes:
+    #   - ./pgdata:/var/lib/postgresql/data
+    ports:
+      "5423:5432"
+  web:
+    image: dm-manager
+      ports:
+        - "5656:5656"
