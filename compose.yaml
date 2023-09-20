@@ -10,8 +10,13 @@ services:
     # volumes:
     #   - ./pgdata:/var/lib/postgresql/data
     ports:
-      "5423:5432"
+      - "5423:5432"
   web:
     image: dm-manager
-      ports:
-        - "5656:5656"
+    environment:
+      DATABASE_URL: postgresql://postgres:password@db:5432/dm-manager?schema=public
+    ports:
+      - "5656:5656"
+    depends_on:
+      db:
+        condition: service_started
